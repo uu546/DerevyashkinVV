@@ -77,30 +77,3 @@ foreach (int size in sizes)
     double timePerElem = (executionTime * 1000) / size;
     Console.WriteLine($"{size, 12} | {executionTime, 15:F4} | {timePerElem, 15:F4}");
 }
-
-// ======= ПОСТРОЕНИЕ ГРАФИКА =======
-Console.WriteLine("\nПостроение графика...");
-
-var plt = new ScottPlot.Plot(800, 600);
-plt.AddScatter(sizes.Select(x => (double)x).ToArray(),
-               times.ToArray(),
-               label: "Измеренное время", markerSize: 6);
-plt.Title("Зависимость времени выполнения от размера массива\nСложность: O(N)");
-plt.XLabel("Размер массива (N)");
-plt.YLabel("Время выполнения (мс)");
-plt.Legend();
-plt.Grid(true);
-plt.SaveFig("C:\\Users\\USER\\Desktop\\Алгоритмы\\АлгоритмыЛаб\\DerevyashkinVV\\lab00\\lab00time_complexity_plot.png");
-
-Console.WriteLine("График сохранён в файл: time_complexity_plot.png");
-
-// ======= АНАЛИЗ РЕЗУЛЬТАТОВ =======
-double lastTimePerElem = (times.Last() * 1000) / sizes.Last();
-Console.WriteLine("\nАнализ результатов:");
-Console.WriteLine("1. Теоретическая сложность алгоритма: O(N)");
-Console.WriteLine("2. Практические замеры показывают линейную зависимость времени от N.");
-Console.WriteLine($"3. Среднее время на один элемент = {lastTimePerElem:F4} мкс.");
-Console.WriteLine("4. График подтверждает линейную зависимость (прямая линия).");
-
-Console.WriteLine("\nНажмите любую клавишу для выхода...");
-Console.ReadKey();
